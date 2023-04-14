@@ -24,8 +24,11 @@ typedef struct node
 }node;
 
 size_t	ft_atoi(const char *str);
-void push(node **head, int val);
+void push_beg(node **head, int val);
+void push(node **origin, node **dest);
 void print_Stack(node **stack);
-node *swap(node **head);
+void swap(node **head);
+void rotate(node **head);
+int pop(node **head);
 
 #endif
