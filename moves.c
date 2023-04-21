@@ -12,69 +12,79 @@
 
 #include "push_swap.h"
 
-void push_beg(node **head, int val)
+void push(node **head, int val)
 {
-    node *new_node = (node *) malloc(sizeof(node));
+    node *new_node;
+
+    new_node = malloc(sizeof(node));
     new_node->val = val;
-    new_node->next = *head; 
+    new_node->next = *head;
     *head = new_node;
 }
 
-void push(node **origin, node **dest){
-    push_beg(dest, (*origin)->val);
-    pop(origin);
+void pop(node **head)
+{
+    node *current;
+    
+    current = *head;
+    *head = (*head)->next;
+    free(current);
 }
 
-void swap(node **head){
+void swap(node **head)
+{
     node *first;
     node *second;
-    int temp;
+    int val;
 
+    if (*head == NULL)
+        return;
     first = *head;
     second = (*head)->next;
-    temp = second->val;
+    val = second->val;
     second->val = first->val;
-    first->val = temp;
+    first->val = val;
     *head = first;
 }
 
-void rotate(node **head){
-    node *current;
-    node *new_node;
-    node *second;
+void push_node(node **src, node **dest)
+{
+    int val;
 
-    current = (*head);
-    second = (*head)->next;
-    new_node = (node *) malloc(sizeof(node));
-    new_node->val = (*head)->val;
-    new_node->next = NULL;
-    while(current->next != NULL)
-        current = current->next;
-    current->next = new_node;
+    if (*src == NULL)
+        return;
+    val = (*src)->val;
+    pop(src);
+    push(dest, val);
+}
+
+void rotate(node **head)
+{
+    node *tmp;
+
+    if (*head == NULL)
+        return;
+    tmp = *head;
+    while(tmp->next != NULL)
+        tmp = tmp->next;
+    tmp->next = malloc(sizeof(node));
+    tmp->next->val = (*head)->val ;
+    tmp->next->next = NULL;
     pop(head);
-    *head = second;
 }
 
 void reverse_rotate(node **head)
 {
-    int val;
-    node * current;
+    node *tmp;
+    node *tmps;
 
-    current = (*head);
-    while(current->next != NULL)
-        current = current->next;
-    
+    if(*head == NULL)
+        return;
+    tmp = *head;
+    while (tmp->next->next != NULL)
+        tmp = tmp->next;
+    tmps = tmp->next;
+    tmp->next = NULL;
+    push(head, tmps->val);
+    free(tmps);
 }
-
-int pop(node **head)
-{
-    int rval = -1;
-    node *next_node = NULL;
-    
-    next_node = (*head)->next;
-    rval = (*head)->val;
-    free(*head);
-    *head = next_node;
-    return (rval);
-}
-

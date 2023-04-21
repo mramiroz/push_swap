@@ -14,9 +14,9 @@
 
 void print_Stack(node **stack){
     node *actual = *stack;
-    if(stack == NULL)
-        return; 
-    while(actual->next != NULL){
+    if(*stack == NULL)
+        return;
+    while(actual != NULL){
 		printf("Num: %i\n", actual->val);
 		actual = actual->next;
 	}
