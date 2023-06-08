@@ -45,6 +45,7 @@ void swap(node **head)
     second->val = first->val;
     first->val = val;
     *head = first;
+    printf("swap");
 }
 
 void push_node(node **src, node **dest)
@@ -56,6 +57,7 @@ void push_node(node **src, node **dest)
     val = (*src)->val;
     pop(src);
     push(dest, val);
+    printf("push");
 }
 
 void rotate(node **head)
@@ -71,6 +73,7 @@ void rotate(node **head)
     tmp->next->val = (*head)->val ;
     tmp->next->next = NULL;
     pop(head);
+    printf("rotate");
 }
 
 void reverse_rotate(node **head)
@@ -87,4 +90,5 @@ void reverse_rotate(node **head)
     tmp->next = NULL;
     push(head, tmps->val);
     free(tmps);
+    printf("reverse rotate");
 }

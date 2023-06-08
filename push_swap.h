@@ -33,5 +33,7 @@ void swap(node **head);
 void push_node(node **src, node **dest);
 void rotate(node **head);
 void reverse_rotate(node **head);
+int is_sorted(node *head);
+void sort_short(node **a, node **b);
 
 #endif
