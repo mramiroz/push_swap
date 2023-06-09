@@ -15,11 +15,12 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "libft_union/union_libft.h"
+#include "libft/libft.h"
 
 typedef struct node
 {
     int val;
+    int index;
     struct node *next;
 }node;
 
@@ -35,5 +36,7 @@ void rotate(node **head);
 void reverse_rotate(node **head);
 int is_sorted(node *head);
 void sort_short(node **a, node **b);
+node	*to_positive_stack(node **stack, int argc);
+int	get_min(node *stack, int index);
 
 #endif

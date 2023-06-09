@@ -23,15 +23,6 @@ int main(int argc, char *argv[])
 	argc--;
 	while(0 < argc)
 		push(&a, ft_atoi(argv[argc--]));
-	printf("A: \n");
+	to_positive_stack(&a, argc);
 	print_Stack(&a);
-	printf("B: \n");
-	print_Stack(&b);
-	sort_short(&a, &b);	
-	printf("\n");
-	printf("A: \n");
-	print_Stack(&a);
-	printf("B: \n");
-	print_Stack(&b);	
-	is_sorted(a);
 }
