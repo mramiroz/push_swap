@@ -35,10 +35,14 @@ node	*to_positive_stack(node **stack, int argc)
 	while (index != argc)
 	{
 		order = get_min(iter, index);
-		while (order != iter->val && iter != NULL)
+		while (iter != NULL)
 		{
+			printf("O: %i I: %i\n", order, iter->val);
 			if (order == iter->val)
+			{
 				iter->val = index;
+				printf("SI");
+			}
 			iter = iter->next;
 		}
 		index++;
