@@ -12,19 +12,26 @@
 
 #include "push_swap.h"
 
-int is_sorted(node *head)
+int is_sorted(t_node *head)
 {
-    node *a;
-    
+    t_node *a;
+
     a = head;
     while(a->next != NULL && a->val < a->next->val)
         a = a->next;
     if (a->next == NULL)
-    {
-        printf("Esta ordenado");
         return(1);
-    }
-    else
-        printf("No esta ordenado");
+    return(0);
+}
+
+int is_one(t_node *head, int digitos)
+{
+    t_node *a;
+
+    a = head;
+    while((a->val>>digitos)&1 == 1)
+        a = a->next;
+    if (a->next == NULL)
+        return(1);
     return(0);
 }

@@ -12,83 +12,83 @@
 
 #include "push_swap.h"
 
-void push(node **head, int val)
+void	create_node(t_node **head, int val)
 {
-    node *new_node;
+	t_node	*new_node;
 
-    new_node = malloc(sizeof(node));
-    new_node->val = val;
-    new_node->next = *head;
-    *head = new_node;
+	new_node = malloc(sizeof(t_node));
+	new_node->val = val;
+	new_node->next = *head;
+	*head = new_node;
 }
 
-void pop(node **head)
+void	pop(t_node **head)
 {
-    node *current;
-    
-    current = *head;
-    *head = (*head)->next;
-    free(current);
+	t_node	*current;
+
+	current = *head;
+	*head = (*head)->next;
+	free(current);
 }
 
-void swap(node **head)
+void	swap(t_node **head)
 {
-    node *first;
-    node *second;
-    int val;
+	t_node	*first;
+	t_node	*second;
+	int		val;
 
-    if (*head == NULL)
-        return;
-    first = *head;
-    second = (*head)->next;
-    val = second->val;
-    second->val = first->val;
-    first->val = val;
-    *head = first;
-    printf("swap");
+	if (*head == NULL)
+		return ;
+	first = *head;
+	second = (*head)->next;
+	val = second->val;
+	second->val = first->val;
+	first->val = val;
+	*head = first;
+	printf("swap\n");
 }
 
-void push_node(node **src, node **dest)
+void	push(t_node **src, t_node **dest)
 {
-    int val;
+	int	val;
 
-    if (*src == NULL)
-        return;
-    val = (*src)->val;
-    pop(src);
-    push(dest, val);
-    printf("push");
+	if (*src == NULL)
+		return ;
+	val = (*src)->val;
+	pop(src);
+	create_node(dest, val);
+	printf("push\n");
 }
 
-void rotate(node **head)
+void	rotate(t_node **head)
 {
-    node *tmp;
+	t_node	*tmp;
 
-    if (*head == NULL)
-        return;
-    tmp = *head;
-    while(tmp->next != NULL)
-        tmp = tmp->next;
-    tmp->next = malloc(sizeof(node));
-    tmp->next->val = (*head)->val ;
-    tmp->next->next = NULL;
-    pop(head);
-    printf("rotate");
+	if (*head == NULL)
+		return ;
+	tmp = *head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = malloc(sizeof(t_node));
+	tmp->next->val = (*head)->val ;
+	tmp->next->next = NULL;
+	pop(head);
+	printf("rotate\n");
 }
 
-void reverse_rotate(node **head)
+void	reverse_rotate(t_node **head)
 {
-    node *tmp;
-    node *tmps;
+	t_node	*tmp;
+	t_node	*tmps;
 
-    if(*head == NULL)
-        return;
-    tmp = *head;
-    while (tmp->next->next != NULL)
-        tmp = tmp->next;
-    tmps = tmp->next;
-    tmp->next = NULL;
-    push(head, tmps->val);
-    free(tmps);
-    printf("reverse rotate");
+	if (*head == NULL)
+		return ;
+	tmp = *head;
+	while (tmp->next->next != NULL)
+		tmp = tmp->next;
+	tmps = tmp->next;
+	tmp->next = NULL;
+	create_node(head, tmps->val);
+	free(tmps);
+	printf("reverse rotate\n");
 }

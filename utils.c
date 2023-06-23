@@ -12,8 +12,8 @@
 
 #include "push_swap.h"
 
-void print_Stack(node **stack){
-    node *actual = *stack;
+void print_Stack(t_node **stack){
+    t_node *actual = *stack;
     if(*stack == NULL)
         return;
     while(actual != NULL){
@@ -22,45 +22,74 @@ void print_Stack(node **stack){
 	}
 }
 
-node	*to_positive_stack(node **stack, int argc)
+t_node	*to_positive_stack (t_node** stack, int argc)
 {
-	int		order;
+	t_node	*iter;
+	t_node	*temp;
+	int		count;
 	int		index;
-	node	*iter;
-	node	*res;
+	int		*counts;
 
 	iter = *stack;
-	order = 0;
 	index = 0;
-	while (index != argc)
+	counts = malloc(argc*sizeof(int));
+	while (iter != NULL)
 	{
-		order = get_min(iter, index);
-		while (iter != NULL)
+		temp = *stack;
+		count = 0;
+		while (temp != NULL)
 		{
-			printf("O: %i I: %i\n", order, iter->val);
-			if (order == iter->val)
-			{
-				iter->val = index;
-				printf("SI");
-			}
-			iter = iter->next;
+			if (temp->val < iter->val)
+				count++;
+			temp = temp->next;
 		}
+		counts[index] = count;
+		iter = iter->next;
 		index++;
 	}
-	stack = &iter;
+	order_counts(stack, iter, counts);
 	return (iter);
 }
 
-int	get_min(node *stack, int index)
+t_node	**order_counts(t_node **stack, t_node *iter, int *counts)
 {
-	int	min;
+	int	i;
 
-	min = 0;
-	while (stack != NULL)
+
+	iter = *stack;
+	i = 0;
+	while (iter != NULL)
 	{
-		if (min > stack->val && (index - 1) != stack->val)
-			min = stack->val;
-		stack = stack->next;
+		iter->val = counts[i];
+		iter = iter->next;
+		i++;
 	}
-	return (min);
+	free(counts);
+	return (stack);
+}
+
+int	get_max_bin_dig(t_node *node){
+	t_node	*current;
+	int		max;
+	int		count;
+
+	max = current->val;
+	current = node;
+	count = 0;
+
+	while (current != NULL)
+	{
+		if (max < current->val)
+			max = current->val;
+		current = current->next;
+	}
+	if (max == 0)
+		return (1);
+	while (max != 0)
+	{
+		max = max / 2;
+		count++;
+	}
+
+	return (count);
 }

@@ -15,16 +15,17 @@
 int main(int argc, char *argv[])
 {
 
-	node *a;
-	node *b;
-	int size;
+	t_node	*a;
+	t_node	*b;
+	int		size;
 
 	a = NULL;
 	b = NULL;
 	size = argc;
 	argc--;
-	while(0 < argc)
-		push(&a, ft_atoi(argv[argc--]));
+	while (0 < argc)
+		create_node(&a, ft_atoi(argv[argc--]));
 	to_positive_stack(&a, size);
-	print_Stack(&a);
+	sort_small_stack(&a, &b);
+	//print_Stack(&a);
 }
