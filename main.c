@@ -21,12 +21,15 @@ int main(int argc, char *argv[])
 
 	a = NULL;
 	b = NULL;
-	size = argc;
+	size = argc - 1;
 	argc--;
 	while (0 < argc)
 		create_node(&a, ft_atoi(argv[argc--]));
 	to_positive_stack(&a, size);
-	if (a != NULL && a->next != NULL)
-		radix_sort(&a, &b, size);
+	if (is_sorted(a) == 1)
+		return (0);
+	else
+		sort(&a, &b, size);
+	printf("\nResultado: ");
 	print_Stack(&a);
 }

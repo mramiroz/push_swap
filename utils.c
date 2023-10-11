@@ -12,6 +12,16 @@
 
 #include "push_swap.h"
 
+void	create_node(t_node **head, int val)
+{
+	t_node	*new_node;
+
+	new_node = malloc(sizeof(t_node));
+	new_node->val = val;
+	new_node->next = *head;
+	*head = new_node;
+}
+
 void print_Stack(t_node **stack){
     t_node *actual = *stack;
     if(*stack == NULL)

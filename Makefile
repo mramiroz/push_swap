@@ -4,7 +4,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 CLIBFT = libft/ft_atoi.c libft/ft_isdigit.c libft/ft_putstr_fd.c
 OLIBFT = $(CLIBFT:.c=.o)
-SRCS = main.c check.c moves.c sort.c utils.c
+SRCS = main.c check.c sort.c utils.c moves/push.c moves/rotate.c moves/swap.c moves/reverse_rotate.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -f
 AR = ar

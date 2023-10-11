@@ -34,12 +34,19 @@ void print_Stack(t_node **stack);
 //Moves
 void create_node(t_node **head, int val);
 t_node *to_positive_stack(t_node** stack, int argc);
-void radix_sort(t_node **a, t_node **b, int argc);
-void swap(t_node **head);
-void push(t_node **src, t_node **dest);
-void rotate(t_node **stack);
+void sort(t_node **stack_a, t_node **stack_b, int argc);
+void ra(t_node **stack_a);
+void rb(t_node **stack_b);
+void sa(t_node **stack_a);
+void sb(t_node **stack_b);
+void pa(t_node **stack_a, t_node **stack_b);
+void pb(t_node **stack_a, t_node **stack_b);
+void rra(t_node **stack_a);
+void rrb(t_node **stack_b);
+void rrr(t_node **stack_a, t_node **stack_b);
 void reverse_rotate(t_node **stack);
 t_node **order_counts(t_node **stack, t_node *counts, int *size);
 int count_bin_digits(int n);
+int is_sorted(t_node *stack);
 
 #endif
