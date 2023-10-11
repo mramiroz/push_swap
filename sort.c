@@ -12,41 +12,38 @@
 
 #include "push_swap.h"
 
-
-void sort_small_stack(t_node **a, t_node **b)
+void radix_sort(t_node **a, t_node **b, int size)
 {
-	int	digitos;
+	int	i;
+	int	j;
+	int bin_size;
+	int count;
 
-	digitos = get_max_bin_dig(*a);
-	digitos--;
-	printf("%i", digitos);
-
-	while (is_sorted(*a) != 1 )
+	bin_size = count_bin_digits(size);
+	i = 0;
+	count = 0;
+	while (i <= bin_size)
 	{
-		while (is_one((*a), digitos) != 1)
+		j = 0;
+		while (j < size - 1)
 		{
-			if (((*a)->val>>digitos)&1 == 0)
+			if (*a != NULL && (((*a)->val >> i) & 1) == 0)
+			{
 				push(a, b);
-			else if(((*a)->val>>digitos)&1 == 1)
+				count++;
+			}
+			else
+			{
 				rotate(a);
+				count++;
+			}
+			j++;
 		}
-		while (b == NULL)
-			push(a, b);
-		digitos--;
+		while (*b != NULL)
+		{
+			push(b, a);
+			count++;
+		}
+		i++;
 	}
-}
-
-void	three_sort(t_node **a)
-{
-	while (is_sorted(*a) != 1)
-	{
-		print_Stack(a);
-		if ((*a)->val < (*a)->next->val)
-			reverse_rotate(a);
-		else if ((*a)->val > (*a)->next->next->val)
-			rotate(a);
-		else if ((*a)->val > (*a)->next->val)
-			swap(a);
-	}
-			print_Stack(a);
 }

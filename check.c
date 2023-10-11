@@ -29,7 +29,7 @@ int is_one(t_node *head, int digitos)
     t_node *a;
 
     a = head;
-    while((a->val>>digitos)&1 == 1)
+    while(((a->val>>digitos) &1) == 1)
         a = a->next;
     if (a->next == NULL)
         return(1);

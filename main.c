@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrarmiro- <mramiro-@student.42madrid.co    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42madrid.co>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:56:23 by mrarmiro-         #+#    #+#             */
-/*   Updated: 2023/04/21 10:47:36 by mrarmiro-        ###   ########.fr       */
+/*   Updated: 2023/10/11 13:32:44 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 	while (0 < argc)
 		create_node(&a, ft_atoi(argv[argc--]));
 	to_positive_stack(&a, size);
-	sort_small_stack(&a, &b);
-	//print_Stack(&a);
+	if (a != NULL && a->next != NULL)
+		radix_sort(&a, &b, size);
+	print_Stack(&a);
 }

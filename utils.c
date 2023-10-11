@@ -17,7 +17,7 @@ void print_Stack(t_node **stack){
     if(*stack == NULL)
         return;
     while(actual != NULL){
-		printf("Num: %i\n", actual->val);
+		printf("%i ", actual->val);
 		actual = actual->next;
 	}
 }
@@ -68,13 +68,28 @@ t_node	**order_counts(t_node **stack, t_node *iter, int *counts)
 	return (stack);
 }
 
+int count_bin_digits(int decimal)
+{
+	int count;
+
+	count = 0;
+	if(decimal == 0)
+		return (1);
+	while (decimal != 0)
+	{
+		decimal /= 2;
+		count++;
+	}
+	return (count);
+}
+
 int	get_max_bin_dig(t_node *node){
 	t_node	*current;
 	int		max;
 	int		count;
 
-	max = current->val;
 	current = node;
+	max = current->val;
 	count = 0;
 
 	while (current != NULL)

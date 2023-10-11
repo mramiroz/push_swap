@@ -22,73 +22,72 @@ void	create_node(t_node **head, int val)
 	*head = new_node;
 }
 
-void	pop(t_node **head)
-{
-	t_node	*current;
 
-	current = *head;
-	*head = (*head)->next;
-	free(current);
-}
 
 void	swap(t_node **head)
 {
-	t_node	*first;
-	t_node	*second;
-	int		val;
+	int	temp;
 
-	if (*head == NULL)
-		return ;
-	first = *head;
-	second = (*head)->next;
-	val = second->val;
-	second->val = first->val;
-	first->val = val;
-	*head = first;
-	printf("swap\n");
+	if (*head != NULL && (*head)->next != NULL)
+	{
+		temp = (*head)->val;
+		(*head)->val = (*head)->next->val;
+		(*head)->next->val = temp;
+	}
 }
 
 void	push(t_node **src, t_node **dest)
 {
-	int	val;
+	t_node	*temp;
 
-	if (*src == NULL)
-		return ;
-	val = (*src)->val;
-	pop(src);
-	create_node(dest, val);
-	printf("push\n");
+	if (*src != NULL && dest != NULL)
+	{
+		temp = *src;
+		*src = temp->next;
+		temp->next = *dest;
+		*dest = temp;
+	}
+	ft_putstr_fd("push\n", 1);
 }
 
-void	rotate(t_node **head)
+void	rotate(t_node **stack)
 {
-	t_node	*tmp;
+	t_node *temp;
 
-	if (*head == NULL)
-		return ;
-	tmp = *head;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = malloc(sizeof(t_node));
-	tmp->next->val = (*head)->val ;
-	tmp->next->next = NULL;
-	pop(head);
-	printf("rotate\n");
+	if (*stack != NULL && (*stack)->next != NULL)
+	{
+		temp = *stack;
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = *stack;
+		*stack = (*stack)->next;
+		temp->next->next = NULL;
+	}
+	ft_putstr_fd("rotate\n", 1);
 }
 
-void	reverse_rotate(t_node **head)
+void	reverse_rotate(t_node **stack)
 {
-	t_node	*tmp;
-	t_node	*tmps;
+	t_node *temp;
+	t_node *temp2;
 
-	if (*head == NULL)
-		return ;
-	tmp = *head;
-	while (tmp->next->next != NULL)
-		tmp = tmp->next;
-	tmps = tmp->next;
-	tmp->next = NULL;
-	create_node(head, tmps->val);
-	free(tmps);
-	printf("reverse rotate\n");
+	if (*stack != NULL && (*stack)->next != NULL)
+	{
+		temp = *stack;
+		while (temp->next != NULL)
+		{
+			temp2 = temp;
+			temp = temp->next;
+		}
+		temp->next = *stack;
+		temp2->next = NULL;
+		*stack = temp;
+	}
+	ft_putstr_fd("reverse rotate\n", 1);
+}
+
+void rrr(t_node **a, t_node **b)
+{
+	rotate(a);
+	rotate(b);
 }
