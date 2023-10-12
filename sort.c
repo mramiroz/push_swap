@@ -12,36 +12,57 @@
 
 #include "push_swap.h"
 
-void two_sort(t_node **a)
+void	two_sort(t_node **a)
 {
 	if (is_sorted(*a) == 1)
-		return;
+		return ;
 	else
 		sa(a);
 }
 
-void quick_sort(t_node **a, t_node **b)
+void	three_sort(t_node **a)
 {
-	int pivot;
-	t_node *iter;
+	int	current;
+	int	mid;
+	int	last;
 
-	iter = *a;
-	pivot = (*a)->val;
-	int i = 0;
-	while (iter != NULL)
+	current = (*a)->val;
+	mid = (*a)->next->val;
+	last = (*a)->next->next->val;
+
+	if (is_sorted(*a) == 1)
+		return;
+	if (current > mid  && last > current)
+		sa(a);
+	else if (current > mid && mid > last)
+		(sa(a), rra(a));
+	else if (current > mid && mid < last)
+		ra(a);
+	else if (current < mid && mid > last)
+		(sa(a), ra(a));
+	else if (current < mid && mid < last)
+		rra(a);
+
+
+}
+
+void	five_sort(t_node **a, t_node **b, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < 2)
+		(pb(a, b), i++);
+	if (size == 3)
+		three_sort(a);
+	else
+		two_sort(a);
+	while (*b != NULL)
 	{
-		printf("\nA:");
-		print_Stack(a);
-		printf("\nB:");
-		print_Stack(b);
-
-		if (pivot < iter->val)
-			pb(a, b);
+		if ((*b)->val > (*a)->val)
+			pa(a, b);
 		else
-			ra(a);
-		if (i > 5)
-			break;
-		i++;
+			(ra(a), pa(a, b));
 	}
 }
 
@@ -74,8 +95,10 @@ void sort(t_node **a, t_node **b, int size)
 {
 	if (size == 2)
 		two_sort(a);
+	else if (size == 3)
+		three_sort(a);
 	else if(size <= 5)
-		quick_sort(a, b);
+		five_sort(a, b, size);
 	else
 		radix_sort(a, b, size);
 }
