@@ -12,9 +12,8 @@
 
 #include "push_swap.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-
 	t_node	*a;
 	t_node	*b;
 	int		size;
@@ -30,6 +29,6 @@ int main(int argc, char *argv[])
 		return (0);
 	else
 		sort(&a, &b, size);
-	printf("\nResultado: ");
+	ft_putstr_fd("\nResultado:", 2);
 	print_Stack(&a);
 }

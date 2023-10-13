@@ -12,6 +12,24 @@
 
 #include "push_swap.h"
 
+int	get_max(t_node *stack)
+{
+	int		max;
+	t_node	*current;
+
+	max = stack->val;
+	current = stack->next;
+	if (!stack)
+		return (-1);
+	while (current != NULL)
+	{
+		if (current->val > max)
+			max = current->val;
+		current = current->next;
+	}
+	return (max);
+}
+
 void	two_sort(t_node **a)
 {
 	if (is_sorted(*a) == 1)
@@ -29,10 +47,9 @@ void	three_sort(t_node **a)
 	current = (*a)->val;
 	mid = (*a)->next->val;
 	last = (*a)->next->next->val;
-
 	if (is_sorted(*a) == 1)
-		return;
-	if (current > mid  && last > current)
+		return ;
+	else if (current > mid && last > current)
 		sa(a);
 	else if (current > mid && mid > last)
 		(sa(a), rra(a));
@@ -42,28 +59,38 @@ void	three_sort(t_node **a)
 		(sa(a), ra(a));
 	else if (current < mid && mid < last)
 		rra(a);
-
-
 }
 
 void	five_sort(t_node **a, t_node **b, int size)
 {
-	int	i;
+	int	max;
 
-	i = 0;
-	while (i < 2)
-		(pb(a, b), i++);
-	if (size == 3)
-		three_sort(a);
-	else
-		two_sort(a);
+	max = get_max(*a);
+	if (size != 4)
+		pb(a, b);
+	pb(a, b);
+	printf("Sort: ");
+	print_Stack(a);
+	printf("\n");
+	three_sort(a);
+	printf("Sort: ");
+	print_Stack(a);
+	printf("\n");
 	while (*b != NULL)
 	{
-		if ((*b)->val > (*a)->val)
+		// print_Stack(a);
+		// printf("\n");
+		// print_Stack(b);
+		// printf("\n");
+		if ((*b)->val == (*a)->val - 1)
 			pa(a, b);
-		else
+		else if((*b)->val == max && (*b)->val == (*a)->val + 1)
 			(ra(a), pa(a, b));
+		else
+			ra(a);
 	}
+	// while (!is_sorted(*a))
+	// 	ra(a);
 }
 
 void radix_sort(t_node **a, t_node **b, int size)
@@ -102,4 +129,3 @@ void sort(t_node **a, t_node **b, int size)
 	else
 		radix_sort(a, b, size);
 }
-
