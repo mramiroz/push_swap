@@ -12,24 +12,6 @@
 
 #include "push_swap.h"
 
-int	get_max(t_node *stack)
-{
-	int		max;
-	t_node	*current;
-
-	max = stack->val;
-	current = stack->next;
-	if (!stack)
-		return (-1);
-	while (current != NULL)
-	{
-		if (current->val > max)
-			max = current->val;
-		current = current->next;
-	}
-	return (max);
-}
-
 void	two_sort(t_node **a)
 {
 	if (is_sorted(*a) == 1)
@@ -63,48 +45,35 @@ void	three_sort(t_node **a)
 
 void	five_sort(t_node **a, t_node **b, int size)
 {
-	int	max;
-
-	max = get_max(*a);
 	if (size != 4)
 		pb(a, b);
 	pb(a, b);
-	printf("Sort: ");
-	print_Stack(a);
-	printf("\n");
 	three_sort(a);
-	printf("Sort: ");
-	print_Stack(a);
-	printf("\n");
 	while (*b != NULL)
 	{
-		// print_Stack(a);
-		// printf("\n");
-		// print_Stack(b);
-		// printf("\n");
 		if ((*b)->val == (*a)->val - 1)
 			pa(a, b);
-		else if((*b)->val == max && (*b)->val == (*a)->val + 1)
+		else if ((*a)->val + 1 == (*b)->val)
 			(ra(a), pa(a, b));
 		else
 			ra(a);
 	}
-	// while (!is_sorted(*a))
-	// 	ra(a);
+	while (is_sorted(*a) != 1)
+		ra(a);
 }
 
-void radix_sort(t_node **a, t_node **b, int size)
+void	radix_sort(t_node **a, t_node **b, int size)
 {
 	int	i;
 	int	j;
-	int bin_size;
+	int	bin_size;
 
 	bin_size = count_bin_digits(size);
 	i = 0;
-	while (i <= bin_size)
+	while (i < bin_size)
 	{
 		j = 0;
-		while (j < size - 1)
+		while (j < size)
 		{
 			if (*a != NULL && (((*a)->val >> i) & 1) == 0)
 				pb(a, b);
@@ -118,7 +87,7 @@ void radix_sort(t_node **a, t_node **b, int size)
 	}
 }
 
-void sort(t_node **a, t_node **b, int size)
+void	sort(t_node **a, t_node **b, int size)
 {
 	if (size == 2)
 		two_sort(a);
