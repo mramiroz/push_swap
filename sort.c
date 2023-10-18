@@ -38,7 +38,7 @@ void	three_sort(t_node **a)
 	else if (current > mid && mid < last)
 		ra(a);
 	else if (current < mid && mid > last)
-		(sa(a), ra(a));
+		rra(a);
 	else if (current < mid && mid < last)
 		rra(a);
 }
@@ -54,7 +54,7 @@ void	five_sort(t_node **a, t_node **b, int size)
 		if ((*b)->val == (*a)->val - 1)
 			pa(a, b);
 		else if ((*a)->val + 1 == (*b)->val)
-			(ra(a), pa(a, b));
+			(pa(a, b), sa(a));
 		else
 			ra(a);
 	}

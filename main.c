@@ -29,7 +29,5 @@ int	main(int argc, char *argv[])
 		return (0);
 	else
 		sort(&a, &b, size);
-	ft_putstr_fd("\nResultado:", 2);
-	print_Stack(&a);
 	return (0);
 }
