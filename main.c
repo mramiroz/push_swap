@@ -31,4 +31,5 @@ int	main(int argc, char *argv[])
 		sort(&a, &b, size);
 	ft_putstr_fd("\nResultado:", 2);
 	print_Stack(&a);
+	return (0);
 }
