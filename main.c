@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 
 	if (argc > 1)
 	{
-		if (all_ints(argv, argc) == 0 || num_repeated(argv) == 1)
+		if (all_ints(argv, argc) == 0)
 		{
 			write(1, "Error\n", 7);
 			return (0);
@@ -28,15 +28,13 @@ int	main(int argc, char *argv[])
 		a = NULL;
 		b = NULL;
 		size = --argc;
-		while (0 < argc)
-			create_node(&a, ft_atoi(argv[argc--]));
+		create_list(&a, argv, argc);
 		if (is_sorted(a) == 1)
 			return (0);
 		else
 		{
 			to_positive_stack(&a, size);
 			sort(&a, &b, size);
-			// print_Stack(&a);
 		}
 	}
 	return (0);

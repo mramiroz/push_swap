@@ -73,3 +73,19 @@ int num_repeated(char **argv)
     }
     return (0);
 }
+
+void create_list(t_node **a, char **argv, int argc)
+{
+    int val;
+
+    while(0 < argc)
+    {
+        val = ft_atoi(argv[argc--]);
+        if (val > INT_MAX || val < INT_MIN)
+        {
+            write(1, "Error\n", 7);
+            exit(1);
+        }
+        create_node(a, val);
+    }
+}

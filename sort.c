@@ -53,11 +53,17 @@ void	five_sort(t_node **a, t_node **b, int size)
 			pa(a, b);
 		else if ((*a)->val + 1 == (*b)->val)
 			(pa(a, b), sa(a));
-		else
-			rra(a);
+		else if(((*b)->val == 0 || (*b)->val == 4 ) && (*b)->next != NULL)
+		{
+			if ((*b)->next->val == 1 || (*b)->next->val == 3)
+				pa(a, b);
+			else if ((*b)->next->val == 0)
+				pa(a, b);
+		}
+		rra(a);
 	}
-	while (is_sorted(*a) != 1)
-		ra(a);
+		while (is_sorted(*a) != 1)
+			ra(a);
 }
 
 void	radix_sort(t_node **a, t_node **b, int size)

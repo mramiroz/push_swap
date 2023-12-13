@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "libft/libft.h"
 
 typedef struct node
@@ -50,5 +51,6 @@ int count_bin_digits(int n);
 int is_sorted(t_node *stack);
 int all_ints(char **argv, int argc);
 int num_repeated(char **argv);
+void create_list(t_node **a, char **argv, int argc);
 
 #endif
