@@ -22,24 +22,22 @@ void	two_sort(t_node **a)
 
 void	three_sort(t_node **a)
 {
-	int	current;
+	int	fir;
 	int	mid;
 	int	last;
 
-	current = (*a)->val;
+	fir = (*a)->val;
 	mid = (*a)->next->val;
 	last = (*a)->next->next->val;
-	if (is_sorted(*a) == 1)
-		return ;
-	else if (current > mid && last > current)
+	if (fir > mid && mid < last && last > fir)
 		sa(a);
-	else if (current > mid && mid > last)
+	else if (fir > mid && mid > last && last < fir)
 		(sa(a), rra(a));
-	else if (current > mid && mid < last)
+	else if (fir > mid && mid < last && last < fir)
 		ra(a);
-	else if (current < mid && mid > last)
-		rra(a);
-	else if (current < mid && mid < last)
+	else if (fir < mid  && mid > last && last > fir)
+		(sa(a), ra(a));
+	else if (fir < mid && mid > last && last < fir)
 		rra(a);
 }
 
@@ -51,12 +49,12 @@ void	five_sort(t_node **a, t_node **b, int size)
 	three_sort(a);
 	while (*b != NULL)
 	{
-		if ((*b)->val == (*a)->val - 1)
+		if ((*a)->val - 1 == (*b)->val)
 			pa(a, b);
 		else if ((*a)->val + 1 == (*b)->val)
 			(pa(a, b), sa(a));
 		else
-			ra(a);
+			rra(a);
 	}
 	while (is_sorted(*a) != 1)
 		ra(a);

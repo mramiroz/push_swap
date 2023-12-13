@@ -23,3 +23,53 @@ int is_sorted(t_node *head)
         return(1);
     return(0);
 }
+
+int all_ints(char **argv, int argc)
+{
+    int i;
+    int j;
+
+    i = 1;
+    while (i < argc)
+    {
+        j = 0;
+        if (argv[i][j] == '-')
+            j++;
+        while (argv[i][j] != '\0')
+        {
+            if (!ft_isdigit(argv[i][j]))
+            {
+                return (0);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (1);
+}
+
+int num_repeated(char **argv)
+{
+    int i;
+    int j;
+    char *current;
+
+    i = 1;
+    while (argv[i] != NULL)
+    {
+        j = i + 1;
+        current = ft_strdup(argv[i]);
+        while (argv[j] != NULL)
+        {
+            if (ft_strncmp(current, argv[j], ft_strlen(current)) == 0)
+            {
+                free(current);
+                return (1);
+            }
+            j++;
+        }
+        free(current);
+        i++;
+    }
+    return (0);
+}

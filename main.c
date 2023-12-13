@@ -14,20 +14,30 @@
 
 int	main(int argc, char *argv[])
 {
-	t_node	*a;
-	t_node	*b;
+	t_node *a;
+	t_node *b;
 	int		size;
 
-	a = NULL;
-	b = NULL;
-	size = argc - 1;
-	argc--;
-	while (0 < argc)
-		create_node(&a, ft_atoi(argv[argc--]));
-	to_positive_stack(&a, size);
-	if (is_sorted(a) == 1)
-		return (0);
-	else
-		sort(&a, &b, size);
+	if (argc > 1)
+	{
+		if (all_ints(argv, argc) == 0 || num_repeated(argv) == 1)
+		{
+			write(1, "Error\n", 7);
+			return (0);
+		}
+		a = NULL;
+		b = NULL;
+		size = --argc;
+		while (0 < argc)
+			create_node(&a, ft_atoi(argv[argc--]));
+		if (is_sorted(a) == 1)
+			return (0);
+		else
+		{
+			to_positive_stack(&a, size);
+			sort(&a, &b, size);
+			// print_Stack(&a);
+		}
+	}
 	return (0);
 }
