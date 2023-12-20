@@ -2,9 +2,11 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-CLIBFT = libft/ft_atoi.c libft/ft_isdigit.c libft/ft_putstr_fd.c libft/ft_strncmp.c libft/ft_strlen.c libft/ft_strdup.c
+CLIBFT = libft/ft_atoi.c libft/ft_isdigit.c libft/ft_putstr_fd.c libft/ft_strncmp.c libft/ft_strlen.c libft/ft_strdup.c \
+		 libft/ft_itoa.c libft/ft_strncmp.c
 OLIBFT = $(CLIBFT:.c=.o)
-SRCS = main.c check.c sort.c utils.c moves/push.c moves/rotate.c moves/swap.c moves/reverse_rotate.c
+SRCS = src/main.c src/check.c src/sort.c src/utils.c src/moves/push.c src/moves/rotate.c \
+		src/moves/swap.c src/moves/reverse_rotate.c src/sort2.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -f
 AR = ar
@@ -26,7 +28,6 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-	make -C libft fclean
 
 re: fclean all
 

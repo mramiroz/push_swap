@@ -41,29 +41,32 @@ void	three_sort(t_node **a)
 		rra(a);
 }
 
-void	five_sort(t_node **a, t_node **b, int size)
+void	five_sort(t_node **a, t_node **b)
 {
-	if (size != 4)
+	t_node *small;
+	int pos;
+	int len;
+
+	while (len_stack(*a) > 3)
+	{
+		small = find_min(*a);
+		pos = find_node(*a, small->val);
+		len = len_stack(*a);
+		if (pos > len / 2)
+		{
+			while ((*a)->val != small->val)
+				rra(a);
+		}
+		else
+		{
+			while ((*a)->val != small->val)
+				ra(a);
+		}
 		pb(a, b);
-	pb(a, b);
+	}
 	three_sort(a);
 	while (*b != NULL)
-	{
-		if ((*a)->val - 1 == (*b)->val)
-			pa(a, b);
-		else if ((*a)->val + 1 == (*b)->val)
-			(pa(a, b), sa(a));
-		else if(((*b)->val == 0 || (*b)->val == 4 ) && (*b)->next != NULL)
-		{
-			if ((*b)->next->val == 1 || (*b)->next->val == 3)
-				pa(a, b);
-			else if ((*b)->next->val == 0)
-				pa(a, b);
-		}
-		rra(a);
-	}
-		while (is_sorted(*a) != 1)
-			ra(a);
+		pa(a, b);
 }
 
 void	radix_sort(t_node **a, t_node **b, int size)
@@ -98,7 +101,7 @@ void	sort(t_node **a, t_node **b, int size)
 	else if (size == 3)
 		three_sort(a);
 	else if(size <= 5)
-		five_sort(a, b, size);
+		five_sort(a, b);
 	else
 		radix_sort(a, b, size);
 }

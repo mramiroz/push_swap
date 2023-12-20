@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 typedef struct node
 {
@@ -50,7 +50,12 @@ t_node **order_counts(t_node **stack, t_node *counts, int *size);
 int count_bin_digits(int n);
 int is_sorted(t_node *stack);
 int all_ints(char **argv, int argc);
-int num_repeated(char **argv);
+int num_repeated(t_node *a);
 void create_list(t_node **a, char **argv, int argc);
+void free_nodes(t_node **a);
+t_node *find_min(t_node *a);
+int find_node(t_node *a, int val);
+int len_stack(t_node *a);
+void ft_error();
 
 #endif
