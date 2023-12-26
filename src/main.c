@@ -12,28 +12,28 @@
 
 #include "push_swap.h"
 
-void	ft_error()
+void	ft_error(void)
 {
 	write(2, "Error\n", 7);
 	exit (1);
 }
 
-void free_nodes(t_node **a)
+void	free_nodes(t_node **a)
 {
-    t_node *temp;
-    while (*a != NULL)
-    {
-        temp = *a;
-        *a = (*a)->next;
-        free(temp);
-    }
-}
+	t_node	*temp;
 
+	while (*a != NULL)
+	{
+		temp = *a;
+		*a = (*a)->next;
+		free(temp);
+	}
+}
 
 int	main(int argc, char *argv[])
 {
-	t_node *a;
-	t_node *b;
+	t_node	*a;
+	t_node	*b;
 	int		size;
 
 	if (argc > 1)
@@ -52,10 +52,7 @@ int	main(int argc, char *argv[])
 		if (num_repeated(a) == 0)
 			(free_nodes(&a), free_nodes(&b), ft_error());
 		else
-		{
-			to_positive_stack(&a, size);
-			sort(&a, &b, size);
-		}
+			(to_positive_stack(&a, size), sort(&a, &b, size));
 		free_nodes(&a);
 		free_nodes(&b);
 	}

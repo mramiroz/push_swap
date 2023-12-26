@@ -35,7 +35,7 @@ void	three_sort(t_node **a)
 		(sa(a), rra(a));
 	else if (fir > mid && mid < last && last < fir)
 		ra(a);
-	else if (fir < mid  && mid > last && last > fir)
+	else if (fir < mid && mid > last && last > fir)
 		(sa(a), ra(a));
 	else if (fir < mid && mid > last && last < fir)
 		rra(a);
@@ -43,9 +43,9 @@ void	three_sort(t_node **a)
 
 void	five_sort(t_node **a, t_node **b)
 {
-	t_node *small;
-	int pos;
-	int len;
+	t_node	*small;
+	int		pos;
+	int		len;
 
 	while (len_stack(*a) > 3)
 	{
@@ -100,7 +100,7 @@ void	sort(t_node **a, t_node **b, int size)
 		two_sort(a);
 	else if (size == 3)
 		three_sort(a);
-	else if(size <= 5)
+	else if (size <= 5)
 		five_sort(a, b);
 	else
 		radix_sort(a, b, size);

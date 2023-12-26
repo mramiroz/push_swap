@@ -12,11 +12,10 @@
 
 #include "../push_swap.h"
 
-
 void	reverse_rotate(t_node **stack)
 {
-	t_node *temp;
-	t_node *temp2;
+	t_node	*temp;
+	t_node	*temp2;
 
 	if (*stack != NULL && (*stack)->next != NULL)
 	{
@@ -34,19 +33,19 @@ void	reverse_rotate(t_node **stack)
 
 void	rra(t_node **stack_a)
 {
-    reverse_rotate(stack_a);
-    ft_putstr_fd("rra\n", 1);
+	reverse_rotate(stack_a);
+	ft_putstr_fd("rra\n", 1);
 }
 
 void	rrb(t_node **stack_b)
 {
-    reverse_rotate(stack_b);
-    ft_putstr_fd("rrb\n", 1);
+	reverse_rotate(stack_b);
+	ft_putstr_fd("rrb\n", 1);
 }
 
-void rrr(t_node **stack_a, t_node **stack_b)
+void	rrr(t_node **stack_a, t_node **stack_b)
 {
-    reverse_rotate(stack_a);
-    reverse_rotate(stack_b);
-    ft_putstr_fd("rrr\n", 1);
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
+	ft_putstr_fd("rrr\n", 1);
 }

@@ -12,10 +12,9 @@
 
 #include "../push_swap.h"
 
-
 void	rotate(t_node **stack)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	if (*stack != NULL && (*stack)->next != NULL)
 	{
@@ -28,13 +27,14 @@ void	rotate(t_node **stack)
 	}
 }
 
-void    ra(t_node **stack_a)
+void	ra(t_node **stack_a)
 {
-    rotate(stack_a);
-    ft_putstr_fd("ra\n", 1);
+	rotate(stack_a);
+	ft_putstr_fd("ra\n", 1);
 }
-void    rb(t_node **stack_b)
+
+void	rb(t_node **stack_b)
 {
-    rotate(stack_b);
-    ft_putstr_fd("rb\n", 1);
+	rotate(stack_b);
+	ft_putstr_fd("rb\n", 1);
 }
