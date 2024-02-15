@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:12:06 by mramiro-          #+#    #+#             */
-/*   Updated: 2023/12/26 09:28:55 by mramiro-         ###   ########.fr       */
+/*   Updated: 2024/02/15 20:21:00 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ int	find_node(t_node *a, int val)
 		a = a->next;
 		i++;
 	}
-	return (-1);
+	return (EXIT_FAILURE);
 }

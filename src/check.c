@@ -66,12 +66,12 @@ int	num_repeated(t_node *a)
 			if (a->val == i->val)
 				count++;
 			if (count == 2)
-				return (0);
+				return (EXIT_FAILURE);
 			i = i->next;
 		}
 		a = a->next;
 	}
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 void	create_list(t_node **a, char **argv, int argc)
@@ -88,7 +88,7 @@ void	create_list(t_node **a, char **argv, int argc)
 			free_nodes(a);
 			write(2, "Error\n", 7);
 			free(str);
-			exit (1);
+			exit (EXIT_FAILURE);
 		}
 		free(str);
 		create_node(a, val);

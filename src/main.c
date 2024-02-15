@@ -15,7 +15,7 @@
 void	ft_error(void)
 {
 	write(2, "Error\n", 7);
-	exit (1);
+	exit (EXIT_FAILURE);
 }
 
 void	free_nodes(t_node **a)
@@ -47,14 +47,14 @@ int	main(int argc, char *argv[])
 		if (is_sorted(a) == 1)
 		{
 			(free_nodes(&a), free_nodes(&b));
-			return (0);
+			return (EXIT_SUCCESS);
 		}
-		if (num_repeated(a) == 0)
+		if (num_repeated(a) == 1)
 			(free_nodes(&a), free_nodes(&b), ft_error());
 		else
 			(to_positive_stack(&a, size), sort(&a, &b, size));
 		free_nodes(&a);
 		free_nodes(&b);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

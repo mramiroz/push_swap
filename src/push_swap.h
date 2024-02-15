@@ -22,17 +22,17 @@ typedef struct node
 {
 	int			val;
 	struct node	*next;
-}t_node;
+}	t_node;
 
 typedef struct Stack
 {
 	t_node	*top;
-}t_stack;
+}	t_stack;
 //Utils
 void	print_Stack(t_node **stack);
 
 //Moves
-void	create_node(t_node **head, int val);
+int		create_node(t_node **head, int val);
 t_node	*to_positive_stack(t_node **stack, int argc);
 void	sort(t_node **stack_a, t_node **stack_b, int argc);
 void	ra(t_node **stack_a);

@@ -12,14 +12,17 @@
 
 #include "push_swap.h"
 
-void	create_node(t_node **head, int val)
+int	create_node(t_node **head, int val)
 {
 	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		return (EXIT_FAILURE);
 	new_node->val = val;
 	new_node->next = *head;
 	*head = new_node;
+	return (EXIT_SUCCESS);
 }
 
 // void	print_stack(t_node **stack)
@@ -112,7 +115,7 @@ int	get_max_bin_dig(t_node *node)
 		current = current->next;
 	}
 	if (max == 0)
-		return (1);
+		return (EXIT_FAILURE);
 	while (max != 0)
 	{
 		max = max / 2;
