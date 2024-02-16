@@ -40,10 +40,3 @@ size_t	ft_atoi(const char *str)
 	}
 	return (num * rest);
 }
-
-/*
-int main()
-{
-	printf("%d", ft_atoi("   --\n-+--+1234ab567"));
-}
-*/

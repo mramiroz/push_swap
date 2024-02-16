@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mramiro- <mramiro-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 11:36:40 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/02/16 09:42:06 by mramiro-         ###   ########.fr       */
+/*   Created: 2022/09/20 13:22:44 by mramiro-          #+#    #+#             */
+/*   Updated: 2024/02/16 08:03:39 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+void	*ft_calloc(size_t num, size_t size)
 {
-	unsigned int	i;
+	void	*s;
+	int		len;
 
-	if (n == 0)
+	len = num * size;
+	s = malloc (len);
+	if (!s || (len && (len / size != num)))
 		return (0);
-	i = 0;
-	while (i != (n - 1) && str1[i] == str2[i] && (str1[i] || str2[i]))
-	{
-		i++;
-	}
-	if (str1[i] != str2[i])
-		return ((unsigned char)str1[i] - (unsigned char)str2[i]);
-	return (0);
+	ft_bzero(s, size * num);
+	return (s);
 }

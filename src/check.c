@@ -24,30 +24,26 @@ int	is_sorted(t_node *head)
 	return (0);
 }
 
-int	all_ints(char **argv, int argc)
+int	all_ints(char **argv)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i < argc)
+	int i;
+	int j;
+	
+	i = 0;
+	while (argv[i] != NULL)
 	{
 		j = 0;
-		if (argv[i][j] == '-' && argv[i][j + 1] != '\0')
-			j++;
-		else if (argv[i][j] == '\0')
-			ft_error();
 		while (argv[i][j] != '\0')
 		{
-			if (!ft_isdigit(argv[i][j]))
-			{
-				return (0);
-			}
+			if (argv[i][j] == '-' && j == 0)
+				j++;
+			if (ft_isdigit(argv[i][j]) == 0)
+				return (EXIT_FAILURE);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 int	num_repeated(t_node *a)
@@ -76,21 +72,23 @@ int	num_repeated(t_node *a)
 
 void	create_list(t_node **a, char **argv, int argc)
 {
-	int		val;
-	char	*str;
+    int		val;
+    char	*str;
 
-	while (0 < argc)
-	{
-		val = ft_atoi(argv[argc--]);
-		str = ft_itoa(val);
-		if (ft_strncmp(str, argv[argc + 1], ft_strlen(argv[argc + 1])) != 0)
-		{
-			free_nodes(a);
-			write(2, "Error\n", 7);
-			free(str);
-			exit (EXIT_FAILURE);
-		}
-		free(str);
-		create_node(a, val);
-	}
+	argc--;
+    while (argc >= 0)
+    {
+        val = ft_atoi(argv[argc]);
+        str = ft_itoa(val);
+        if (str == NULL || ft_strncmp(str, argv[argc], ft_strlen(argv[argc])) != 0)
+        {
+            free_nodes(a);
+            write(2, "Error\n", 7);
+            free(str);
+            exit (EXIT_FAILURE);
+        }
+        free(str);
+        create_node(a, val);
+        argc--;
+    }
 }

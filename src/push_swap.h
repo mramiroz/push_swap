@@ -48,7 +48,7 @@ void	reverse_rotate(t_node **stack);
 t_node	**order_counts(t_node **stack, t_node *counts, int *size);
 int		count_bin_digits(int n);
 int		is_sorted(t_node *stack);
-int		all_ints(char **argv, int argc);
+int		all_ints(char **argv);
 int		num_repeated(t_node *a);
 void	create_list(t_node **a, char **argv, int argc);
 void	free_nodes(t_node **a);
