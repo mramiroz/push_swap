@@ -56,5 +56,7 @@ t_node	*find_min(t_node *a);
 int		find_node(t_node *a, int val);
 int		len_stack(t_node *a);
 void	ft_error(void);
+void	free_double(char **str);
+int		double_len(char **str);
 
 #endif

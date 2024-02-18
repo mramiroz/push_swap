@@ -11,42 +11,11 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_error(void)
+char	**join_nums(char **nums, char **temp, int size, int num_args)
 {
-	write(2, "Error\n", 7);
-	exit (EXIT_FAILURE);
-}
-
-void	free_nodes(t_node **a)
-{
-	t_node	*temp;
-
-	while (*a != NULL)
-	{
-		temp = *a;
-		*a = (*a)->next;
-		free(temp);
-	}
-}
-
-void	free_double(char **str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != NULL)
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-char **join_nums(char **nums, char **temp, int size, int num_args)
-{
-	int i;
-	int j;
-	char **new;
+	int		i;
+	int		j;
+	char	**new;
 
 	i = 0;
 	new = malloc(sizeof(char *) * (num_args + size + 1));
@@ -54,13 +23,12 @@ char **join_nums(char **nums, char **temp, int size, int num_args)
 		ft_error();
 	if (nums != NULL)
 	{
-		while(nums[i] != NULL)
+		while (nums[i] != NULL)
 		{
 			new[i] = ft_strdup(nums[i]);
-			free(nums[i]);
 			i++;
 		}
-		free(nums);
+		free_double(nums);
 	}
 	j = 0;
 	while (j < size)
@@ -72,23 +40,23 @@ char **join_nums(char **nums, char **temp, int size, int num_args)
 	return (new);
 }
 
-int double_len(char **argv)
+int	double_len(char **argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(argv[i] != NULL)
+	while (argv[i] != NULL)
 		i++;
 	return (i);
 }
 
-char **split_args(char **argv)
+char	**split_args(char **argv)
 {
-	char **nums;
-	char **temp;
-	int size;
-	int num_args;
-	int i;
+	char	**nums;
+	char	**temp;
+	int		size;
+	int		num_args;
+	int		i;
 
 	i = 1;
 	num_args = 0;
@@ -97,7 +65,6 @@ char **split_args(char **argv)
 	{
 		if (argv[i][0] == '\0')
 			i++;
-		size = 0;
 		temp = ft_split(argv[i], ' ');
 		if (!temp)
 			ft_error();
@@ -125,8 +92,7 @@ int	main(int argc, char *argv[])
 		size = double_len(nums);
 		a = NULL;
 		b = NULL;
-		create_list(&a, nums, size);
-		free_double(nums);
+		(create_list(&a, nums, size), free_double(nums));
 		if (is_sorted(a) == 1)
 		{
 			(free_nodes(&a), free_nodes(&b));

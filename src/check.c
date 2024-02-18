@@ -26,9 +26,9 @@ int	is_sorted(t_node *head)
 
 int	all_ints(char **argv)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	while (argv[i] != NULL)
 	{
@@ -72,23 +72,24 @@ int	num_repeated(t_node *a)
 
 void	create_list(t_node **a, char **argv, int argc)
 {
-    int		val;
-    char	*str;
+	int		val;
+	char	*str;
 
 	argc--;
-    while (argc >= 0)
-    {
-        val = ft_atoi(argv[argc]);
-        str = ft_itoa(val);
-        if (str == NULL || ft_strncmp(str, argv[argc], ft_strlen(argv[argc])) != 0)
-        {
-            free_nodes(a);
-            write(2, "Error\n", 7);
-            free(str);
-            exit (EXIT_FAILURE);
-        }
-        free(str);
-        create_node(a, val);
-        argc--;
-    }
+	while (argc >= 0)
+	{
+		val = ft_atoi(argv[argc]);
+		str = ft_itoa(val);
+		if (str == NULL
+			|| ft_strncmp(str, argv[argc], ft_strlen(argv[argc])) != 0)
+		{
+			free_nodes(a);
+			write(2, "Error\n", 7);
+			free(str);
+			exit (EXIT_FAILURE);
+		}
+		free(str);
+		create_node(a, val);
+		argc--;
+	}
 }

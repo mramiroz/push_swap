@@ -1,25 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mramiro- <mramiro-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 17:44:32 by mramiro-          #+#    #+#             */
-/*   Updated: 2024/02/18 09:03:00 by mramiro-         ###   ########.fr       */
+/*   Created: 2024/02/18 09:05:38 by mramiro-          #+#    #+#             */
+/*   Updated: 2024/02/18 09:26:42 by mramiro-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_bzero(void *dst, size_t n)
+void	ft_error(void)
 {
-	size_t	i;
+	write(2, "Error\n", 7);
+	exit (EXIT_FAILURE);
+}
+
+void	free_nodes(t_node **a)
+{
+	t_node	*temp;
+
+	while (*a != NULL)
+	{
+		temp = *a;
+		*a = (*a)->next;
+		free(temp);
+	}
+}
+
+void	free_double(char **str)
+{
+	int	i;
 
 	i = 0;
-	while (i != n)
+	while (str[i] != NULL)
 	{
-		((unsigned char *)dst)[i] = '\0';
+		free(str[i]);
 		i++;
 	}
+	free(str);
 }
